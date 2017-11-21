@@ -16,15 +16,19 @@ USER ${NB_USER}
 # shows that matplotlib should be under version 2?
 # https://github.com/matplotlib/matplotlib/releases
 
-ENV ANACONDA_PACKAGES="ipywidgets"
-ENV CONDA_PACKAGES="bqplot vaex ipyvolume matplotlib=1.5.3"
-ENV PIP_PACKAGES=""
+#ENV ANACONDA_PACKAGES="ipywidgets"
+#ENV CONDA_PACKAGES="bqplot vaex ipyvolume matplotlib=1.5.3"
+#ENV PIP_PACKAGES=""
 
-# Install packages
+## Install packages
+#RUN echo "" && \
+#    conda install -c anaconda $ANACONDA_PACKAGES && \
+#    conda install -c conda-forge $CONDA_PACKAGES
+#    #pip install $PIP_PACKAGES
+
+COPY requirements_rtd.txt ${HOME}
 RUN echo "" && \
-    conda install -c anaconda $ANACONDA_PACKAGES && \
-    conda install -c conda-forge $CONDA_PACKAGES
-    #pip install $PIP_PACKAGES
+    pip install -r requirements_rtd.txt
 
 # jupyter notebook password remove
 RUN echo "" && \
